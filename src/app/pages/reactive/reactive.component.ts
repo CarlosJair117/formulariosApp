@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive',
@@ -13,10 +13,15 @@ export class ReactiveComponent implements OnInit {
   constructor( private fb: FormBuilder ) { 
 
     this.crearFormulario();
+    this.cargarDataAlFormulario();
 
    }
 
   ngOnInit(): void {
+  }
+
+  get pasatiempos() {
+    return this.forma.get('pasatiempos') as FormArray;
   }
 
   get nombreNoValido() {
@@ -37,8 +42,35 @@ export class ReactiveComponent implements OnInit {
       nombre: ['', [Validators.required, Validators.minLength(5)]],
       apellido: ['', [Validators.required, Validators.minLength(5)]],
       correo: ['', [Validators.required, Validators.email] ],
+      direccion: this.fb.group({
+        distrito: ['', Validators.required ],
+        ciudad: ['', Validators.required ],
+      }),
+      pasatiempos: this.fb.array([])
     });
 
+  }
+
+  cargarDataAlFormulario() {
+
+    this.forma.reset({
+          nombre: "carlos",
+      apellido: "fernandez",
+      correo: "carlos@gmail.com",
+      direccion: {
+      distrito: "apizyork",
+        ciudad: "tlaxcala"
+      }
+    });
+
+  }
+
+  agregarPasatiempo(){
+    this.pasatiempos.push( this.fb.control('', Validators.required) );
+  }
+
+  borrarPasatiempo( i: number ){
+    this.pasatiempos.removeAt(i);
   }
 
   guardar() {
