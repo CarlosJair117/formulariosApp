@@ -13,7 +13,7 @@ export class TemplateComponent implements OnInit {
     nombre: 'carlos',
     apellido: 'fernandez',
     correo: 'carlos@gmail.com',
-    pais: ''
+    pais: 'CRI'
   }
 
   paises: any[] = [];
@@ -31,7 +31,7 @@ export class TemplateComponent implements OnInit {
           codigo: ''
         })
 
-        console.log(this.paises);
+        
       });
 
   }

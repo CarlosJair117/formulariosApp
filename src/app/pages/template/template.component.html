@@ -42,6 +42,20 @@
         </div>
     </div>
 
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Genero</label>
+        <div class="col-8">
+            <div class="form-check form-check-inline">
+                <input type="radio" class="form-check-input" name="genero" value="M" ngModel required #genero="ngModel" [class.is-invalid]="genero.invalid && genero.touched">
+                <label class="form-check-label">Masculino</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input type="radio" class="form-check-input" name="genero" value="F" ngModel required #genero="ngModel" [class.is-invalid]="genero.invalid && genero.touched">
+                <label class="form-check-label">Femenino</label>
+            </div>
+        </div>
+    </div>
 
     <div class="form-group row">
         <label class="col-2 col-form-label">&nbsp;</label>
